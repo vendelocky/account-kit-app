@@ -1,4 +1,12 @@
-See [accountkit.alchemy.com](https://accountkit.alchemy.com/) for the most up to date documentation!
+This project is the enhanced version of the quick start account abstraction tool kit from Alchemy that is working with social logins.
+
+## Feature
+1. Login with social accounts (email, google account, facebook account, wallet)
+2. mint token to the logged in address
+3. mint a pre-defined NFT to the logged in address
+4. Gas fee is sponsored
+##
+For more information, see [accountkit.alchemy.com](https://accountkit.alchemy.com/) for the most up to date documentation!
 
 - [quick start guide](https://accountkit.alchemy.com/react/quickstart) to Account Kit
 - [demo](https://demo.alchemy.com/)
@@ -12,7 +20,8 @@ This is a [Next.js](https://nextjs.org/) template bootstrapped with [`create-nex
 First, download the template:
 
 ```bash
-yarn create next-app account-kit-app -e https://github.com/avarobinson/account-kit-quickstart
+yarn create next-app account-kit-app -e https://github.com/avarobinson/account-kit-quickstart |
+npx create-next-app account-kit-app -e https://github.com/avarobinson/account-kit-quickstart
 ```
 
 ### Get you alchemy api key
@@ -23,7 +32,7 @@ yarn create next-app account-kit-app -e https://github.com/avarobinson/account-k
 ### Run the app
 
 ```bash
-yarn dev
+yarn dev | npm run dev
 ```
 
 Follow this [quick start guide](https://accountkit.alchemy.com/) for more details!
