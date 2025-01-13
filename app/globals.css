@@ -18,12 +18,25 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+}
+
+button {
+  background-color: dodgerblue;
+  padding: 5px 12px;
+  border-radius: 5px;
+}
+
+button.logout {
+  background-color: crimson;
+}
+
+button:hover,
+button:disabled {
+  background-color: white;
+  color: black;
 }
 
 @layer utilities {
