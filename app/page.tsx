@@ -4,7 +4,6 @@ import {
   useLogout,
   useSignerStatus,
   useUser,
-  type UseSendUserOperationResult,
   useSendUserOperation,
   useSmartAccountClient,
 } from '@account-kit/react';
@@ -23,7 +22,7 @@ import './globals.css';
 export default function Home() {
   const [provider, setProvider] = useState<any>(null);
   const [tokenCount, setTokenCount] = useState(0);
-  const [NFTData, setNFTData] = useState();
+  const [NFTData, setNFTData] = useState<Record<string, any> | undefined>(undefined);
 
   const { client } = useSmartAccountClient({ type: "LightAccount" });
   const { sendUserOperation, isSendingUserOperation } = useSendUserOperation({
@@ -47,8 +46,8 @@ export default function Home() {
 
   const getNFT = useCallback(async () => {
     const alchemy = new Alchemy(alchemySetting);
-    const nftData = await alchemy.nft.getNftsForOwner(user?.address);
-    if (nftData?.ownedNfts?.length > 0) {
+    const nftData = user?.address ? await alchemy.nft.getNftsForOwner(user.address) : undefined;
+    if (nftData && (nftData.ownedNfts ?? []).length > 0) {
       const nftMetadata = nftData.ownedNfts[0]?.raw.metadata;
       setNFTData(nftMetadata);
     }
@@ -126,7 +125,7 @@ export default function Home() {
               <button
                 className="btn btn-primary mt-6 w-56"
                 onClick={() => mint(NFT_CONTRACT_ADDRESS, nftAbi, 'mintNFT')}
-                disabled={isSendingUserOperation || NFTData}
+                disabled={isSendingUserOperation || !!NFTData}
               >
                 {NFTData ? "NFT minted" : isSendingUserOperation ? "Minting..." : "Mint NFT"}
               </button>
