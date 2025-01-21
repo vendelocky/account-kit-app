@@ -47,6 +47,7 @@ export default function Home() {
   const getNFT = useCallback(async () => {
     const alchemy = new Alchemy(alchemySetting);
     const nftData = user?.address ? await alchemy.nft.getNftsForOwner(user.address) : undefined;
+    console.log('nft', nftData);
     if (nftData && (nftData.ownedNfts ?? []).length > 0) {
       const nftMetadata = nftData.ownedNfts[0]?.raw.metadata;
       setNFTData(nftMetadata);
@@ -104,7 +105,7 @@ export default function Home() {
             <p className="text-l">Logged in as</p>
             <p className="text-l font-bold"> {user ? user?.address : "anon"} </p>
             {tokenCount > 0 && <p className="text-xl font-bold mt-6">{`$RTN owned: ${tokenCount}`}</p>}
-            {NFTData && (
+            {!!NFTData && (
               <div>
                 <p className="text-xl font-bold gap-2 p-2">{NFTData?.description}</p>
                 <div className="flex items-center justify-center">
@@ -127,12 +128,16 @@ export default function Home() {
                 onClick={() => mint(NFT_CONTRACT_ADDRESS, nftAbi, 'mintNFT')}
                 disabled={isSendingUserOperation || !!NFTData}
               >
-                {NFTData ? "NFT minted" : isSendingUserOperation ? "Minting..." : "Mint NFT"}
+                {!!NFTData ? "NFT minted" : isSendingUserOperation ? "Minting..." : "Mint NFT"}
               </button>
             </div>
           </div>
           <div className="my-10">
-            <button className="btn btn-primary mt-6 w-56 logout" onClick={() => logout()}>
+            <button className="btn btn-primary mt-6 w-56 logout" onClick={() => {
+              setTokenCount(0);
+              setNFTData(undefined);
+              logout();
+            }}>
               Log out
             </button>
           </div>
