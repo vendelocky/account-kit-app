@@ -103,7 +103,14 @@ export default function Home() {
         <div>
           <div className="flex flex-col gap-2 p-2">
             <p className="text-l">Logged in as</p>
-            <p className="text-l font-bold"> {user ? user?.address : "anon"} </p>
+            <a
+              href={`https://sepolia.etherscan.io/address/${user.address}`}
+              target="_blank"
+              onMouseEnter={(e) => ((e.target as HTMLAnchorElement).style.textDecoration = 'underline')}
+              onMouseLeave={(e) => ((e.target as HTMLAnchorElement).style.textDecoration = 'none')}
+            >
+              <p className="text-l font-bold"> {user ? user?.address : "anon"} </p>
+            </a>
             {tokenCount > 0 && <p className="text-xl font-bold mt-6">{`$RTN owned: ${tokenCount}`}</p>}
             {!!NFTData && (
               <div>

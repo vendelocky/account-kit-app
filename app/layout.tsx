@@ -2,7 +2,7 @@ import { config } from "@/config";
 import { cookieToInitialState } from "@account-kit/core";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { headers } from "next/headers";
+// import { headers } from "next/headers";
 import "./globals.css";
 import { Providers } from "./providers";
 
@@ -22,7 +22,8 @@ export default function RootLayout({
   // https://accountkit.alchemy.com/react/ssr#persisting-the-account-state
   const initialState = cookieToInitialState(
     config,
-    headers().get("cookie") ?? undefined
+    // commented headers for deployment on firebase
+    // headers().get("cookie") ?? undefined
   );
 
   return (
