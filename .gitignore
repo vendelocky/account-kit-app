@@ -54,3 +54,8 @@ tempEnv.ts
 
 # Hardhat Ignition default folder for deployments against a local node
 ignition/deployments
+
+# firebase
+firebase.json
+.firebaserc
+.firebase

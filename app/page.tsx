@@ -117,7 +117,12 @@ export default function Home() {
                 <p className="text-xl font-bold gap-2 p-2">{NFTData?.description}</p>
                 <div className="flex items-center justify-center">
                   <div style={{ width: '50%' }}>
-                    <Image src={NFTData?.image} alt={'Image'} width={4} height={3} layout={'responsive'} />
+                    <a
+                      href={`https://testnets.opensea.io/${user.address}`}
+                      target="_blank"
+                    >
+                      <Image src={NFTData?.image} alt={'Image'} width={4} height={3} layout={'responsive'} />
+                    </a>
                   </div>
                 </div>
               </div>
